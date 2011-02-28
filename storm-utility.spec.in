@@ -1,0 +1,81 @@
+# Copyright (c) Istituto Nazionale di Fisica Nucleare (INFN). 2006-2010.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+%define name         @PACKAGE@
+%define version      @VERSION@
+%define release      @STORM_UTILITY_AGE_NUMBER@.@STORM_UTILITY_SO@
+
+%define builddir     @RPM_BUILD_DIR@/build-%{name}-%{version}
+
+Name:           %{name}
+Version:        %{version}
+Release:        %{release}
+Vendor:         INFN - CNAF (2009)
+Packager:       Elisabetta Ronchieri <elisabetta.ronchieri@cnaf.infn.it>
+License:        Apache License, Version 2.0.
+URL:            http://grid-it.cnaf.infn.it
+Source:         @PACKAGE@-%{version}.tar.gz
+Group:          Application/Generic
+AutoReqProv:    yes
+BuildArch:      noarch
+BuildRoot:      %{builddir}/var/tmp/%{name}-%{version}
+Summary:        Provides the utility files. 
+
+%define debug_package %{nil}
+
+%description
+This is the installation of utilities.
+
+%prep
+%setup -n @PACKAGE@-%{version} 
+
+%build
+./bootstrap storm.common
+./configure --prefix=/usr --datadir=/usr/share --sysconfdir=/etc
+make
+
+%install
+if [ -d $RPM_BUILD_ROOT ]; then rm -rf $RPM_BUILD_ROOT; fi
+mkdir -p $RPM_BUILD_ROOT
+make install DESTDIR=$RPM_BUILD_ROOT
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files 
+%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/storm.def
+%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/storm-users.conf
+%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/storm-groups.conf
+%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/storm-wn-list.conf
+%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/services/ig-se_storm_backend
+%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/services/ig-se_storm_frontend
+%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/services/ig-se_storm_checksum
+%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/vo.d/dteam
+%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/vo.d/infngrid
+%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/vo.d/ops
+%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/vo.d/testers.eu-emi.eu
+%doc %{_datadir}/doc/%{name}-%{version}/ChangeLog
+%doc %{_datadir}/doc/%{name}-%{version}/CREDITS
+%doc %{_datadir}/doc/%{name}-%{version}/LICENSE
+%doc %{_datadir}/doc/%{name}-%{version}/README
+
+%dir %{_datadir}/doc/%{name}-%{version}
+%dir %{_sysconfdir}/storm
+%dir %{_sysconfdir}/storm/siteinfo
+%dir %{_sysconfdir}/storm/siteinfo/services
+%dir %{_sysconfdir}/storm/siteinfo/vo.d
+
+%changelog
+* Fri Feb 28 2011 Elisabetta Ronchieri> <elisabetta.ronchieri@cnaf.infn.it>
+- Added utility

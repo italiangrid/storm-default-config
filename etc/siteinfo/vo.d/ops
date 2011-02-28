@@ -1,0 +1,11 @@
+
+#
+# section VO ops configuration
+#
+DEFAULT_SE="$SAM_CLOSE_SE_HOST"
+QUEUES="ops"
+STORAGE_DIR="$DPM_FILESYSTEMS/ops"
+SW_DIR="/data/opssw"
+VOMSES="'ops lcg-voms.cern.ch 15009 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch ops 24' 'ops voms.cern.ch 15009 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch ops 24'"
+VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority'"
+VOMS_SERVERS="vomss://voms.cern.ch:8443/voms/ops?/ops/"

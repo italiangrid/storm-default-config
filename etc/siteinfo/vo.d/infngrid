@@ -1,0 +1,11 @@
+
+#
+# section VO infngrid configuration
+#
+DEFAULT_SE="$CLOSE_SE_HOST"
+QUEUES="infngrid"
+STORAGE_DIR="$DPM_FILESYSTEMS/infngrid"
+SW_DIR="/opt/exp_software/infngrid"
+VOMSES="'infngrid voms.cnaf.infn.it 15000 /C=IT/O=INFN/OU=Host/L=CNAF/CN=voms.cnaf.infn.it infngrid' 'infngrid voms-01.pd.infn.it 15000 /C=IT/O=INFN/OU=Host/L=Padova/CN=voms-01.pd.infn.it infngrid'"
+VOMS_CA_DN="'/C=IT/O=INFN/CN=INFN CA' '/C=IT/O=INFN/CN=INFN CA'"
+VOMS_SERVERS="'vomss://voms.cnaf.infn.it:8443/voms/infngrid?/infngrid' 'vomss://voms-01.pd.infn.it:8443/voms/infngrid?/infngrid'"
