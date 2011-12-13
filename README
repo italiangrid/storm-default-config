@@ -3,3 +3,104 @@
 *   Date:   28 February 2011
 *
 
+Details about default variables:
+-------------------------------
+
+The default variables are organized in three main categories: general, site, and storm.
+
+Let us start with general default variables.
+--------------------------------------------
+
+WN_LIST is equal to a complete file name that contains a list of the batch nodes 
+hostnames and optionally the subcluster ID the WN belongs to. An example file 
+is available in 
+/etc/storm/siteinfo/wn-list.conf
+Change the path according to your site settings. For more information please check
+${INSTALL_ROOT}/glite/yaim/examples/wn-list.conf
+
+USERS_CONF is equal to a complete file name that contains a list of unix users 
+to be created in the service nodes. The format is as follows:
+# UID:LOGIN:GID1,GID2,...:GROUP1,GROUP2,...:VO:FLAG:
+An example file is available in 
+/etc/storm/siteinfo/storm-users.conf
+Change the path according to your site settings. For more information please check 
+${INSTALL_ROOT}/glite/yaim/examples/users.conf.README
+
+GROUPS_CONF is equal to a complete file name that contains a list of the local 
+accounts which a user should be mapped to. The format is as follows:
+# "VOMS_FQAN":GROUP:GID:FLAG:[VO]
+An example file is available in 
+/etc/storm/siteinfo/storm-groups.conf
+Change the path according to your site settings. For more information please check 
+${INSTALL_ROOT}/glite/yaim/examples/groups.conf.README
+
+SPECIAL_POOL_ACCOUNTS is a flag. If not defined, YAIM will decide whether to use special 
+pool accounts or not automatically. This variable MUST be uncommented if you want to 
+explicitly use pool accounts for special users when generating the grid-mapfile. 
+
+ENABLE_MPI is a flag.
+
+Let us move to site default variables.
+-------------------------------------
+
+MY_DOMAIN is the host domain name. 
+
+SITE_NAME is a human-readable name of your site. An example value is
+SITE_NAME="INFN-CNAF"
+
+SITE_LAT contains the position of your site north or south of the equator 
+measured from -90. to 90. with positive values going north and 
+negative values going south. An example value is 
+SITE_LAT=0.0 
+
+SITE_LONG contains the position of the site east or west of Greenwich, England 
+measured from -180. to 180. with positive values going east and 
+negative values going west. An example value is  
+SITE_LONG=0.0
+
+NTP_HOSTS_IP contains a space separed list of the IP addresses of the NTP servers
+(preferably set a local ntp server and a public one, ex. pool.ntp.org). An example value
+is
+NTP_HOSTS_IP="131.154.1.103 193.206.144.10"
+
+The following variables MUST be set mandatory in your storm.def file:
+
+MY_DOMAIN="???"
+SITE_NAME="???"
+SITE_LAT=???
+SITE_LONG=???
+NTP_HOSTS_IP="???"
+
+Let us move to storm default variables.
+--------------------------------------
+
+MYSQL_PASSWORD is the mysql admin password, which MUST be uncommented if you are 
+installing a mysql server.
+
+JAVA_LOCATION contains a complete java path.
+
+VOS contains the list of VOS
+# If you are configuring a DNS-like VO, please check
+# the following URL: https://twiki.cern.ch/twiki/bin/view/LCG/YaimGuide400#vo_d_directory
+VOS="testers.eu-emi.eu dteam infngrid ops"
+
+STORM_BACKEND_HOST="omii005-vm01.cnaf.infn.it"
+STORM_BDII_OVERWRITE="true"
+STORM_DB_HOST="omii005-vm01.cnaf.infn.it"
+STORM_USER="storm"
+STORM_DB_PWD="storm"
+STORM_DB_USER="storm"
+STORM_DEFAULT_ROOT="/storage"
+STORM_FE_BE_XMLRPC_HOST="omii005-vm01.cnaf.infn.it"
+STORM_FRONTEND_HOST_LIST="omii005-vm01.cnaf.infn.it"
+STORM_FRONTEND_PUBLIC_HOST="omii005-vm01.cnaf.infn.it"
+
+The following variables MUST be set mandatory in your storm.def file:
+
+MYSQL_PASSWORD="???"
+STORM_BACKEND_HOST="???"
+STORM_DB_HOST="???"
+STORM_DB_PWD="???"
+STORM_FRONTEND_HOST_LIST="???"
+STORM_FRONTEND_PUBLIC_HOST="???"
+

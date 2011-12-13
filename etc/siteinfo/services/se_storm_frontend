@@ -17,8 +17,8 @@
 # OPTIONAL - Default value: /etc/grid-security/${STORM_USER}
 #STORM_CERT_DIR=/etc/grid-security/${STORM_USER}
 # Directory used to exchange proxies.
-# OPTIONAL - Default value: ${STORM_BE_DIR}/tmp
-#STORM_PROXY_HOME=${STORM_BE_DIR}/tmp
+# OPTIONAL - Default value: /etc/storm/tmp
+#STORM_PROXY_HOME=/etc/storm/tmp
 
 # Database settings
 #---------------------------------------------------------
@@ -30,7 +30,7 @@
 #STORM_DB_USER=storm
 # Password for database connection.
 # COMPULSORY - No default value.
-STORM_DB_PWD=quousquetandem
+STORM_DB_PWD=storm
 
 # Configuration files settings
 #---------------------------------------------------------
@@ -81,5 +81,5 @@ STORM_DB_PWD=quousquetandem
 # WSDL settings
 #---------------------------------------------------------
 # WSDL to be returned to a GET request.
-# OPTIONAL - Default value: ${STORM_FE_DIR}/wsdl/srm.v2.2.wsdl
-#STORM_FE_WSDL=${STORM_FE_DIR}/wsdl/srm.v2.2.wsdl
+# OPTIONAL - Default value: /usr/share/wsdl/srm.v2.2.wsdl
+STORM_FE_WSDL=/usr/share/wsdl/srm.v2.2.wsdl

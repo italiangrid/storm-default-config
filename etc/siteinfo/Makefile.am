@@ -12,12 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+EXTRA_DIST = \
+   storm.def.template.in
+
 SUBDIRS = services vo.d
 
 stormetcsysconfdir = $(sysconfdir)/storm/siteinfo
 dist_stormetcsysconf_DATA = storm-groups.conf \
    storm-users.conf \
    storm.def \
+   storm.def.template \
    storm-wn-list.conf
+
+CLEANFILES = \
+   storm.def.template
 
 MAINTAINERCLEANFILES = Makefile.in

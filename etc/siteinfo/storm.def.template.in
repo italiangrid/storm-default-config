@@ -22,8 +22,9 @@
 ###################################
 
 BDII_HOST="emitb-bdii-site.cern.ch"
-USERS_CONF=/etc/storm/siteinfo/storm-users.conf
-GROUPS_CONF=/etc/storm/siteinfo/storm-groups.conf
+WN_LIST=@sysconfdir@/storm/siteinfo/storm-wn-list.conf
+USERS_CONF=@sysconfdir@/storm/siteinfo/storm-users.conf
+GROUPS_CONF=@sysconfdir@/storm/siteinfo/storm-groups.conf
 ENABLE_MPI=no
 # SPECIAL_POOL_ACCOUNTS=yes or no
 
@@ -31,63 +32,32 @@ ENABLE_MPI=no
 # Site configuration variables #
 ################################
 
-MY_DOMAIN="cnaf.infn.it"
-SITE_NAME="storm-1.7-all-in-one"
+MY_DOMAIN="???"
+SITE_NAME="???"
 SITE_LAT=0.0
 SITE_LONG=0.0
-NTP_HOSTS_IP="131.154.1.103 193.206.144.10"
+NTP_HOSTS_IP="131.154.1.103 193.206.144.10 193.206.144.11"
 
 #################################
-
 # StoRM configuration variables #
 #################################
 
-MYSQL_PASSWORD="storm"
+MYSQL_PASSWORD="???"
 JAVA_LOCATION="/usr/java/latest"
 
+VOS="testers.eu-emi.eu dteam infngrid ops"
 
-VOS="testers.eu-emi.eu dteam"
-STORM_STORAGEAREA_LIST="testers.eu-emi.eu dteam testers.eu-emi.eu_NO_VOMS"
-
-STORM_BACKEND_HOST=omii006-vm02.cnaf.infn.it
+cmd="hostname -f"
+STORM_BACKEND_HOST=$($cmd)
 STORM_BDII_OVERWRITE="true"
 STORM_DB_HOST=$STORM_BACKEND_HOST
 STORM_USER="storm"
-STORM_DB_PWD="storm"
+STORM_DB_PWD="???"
 STORM_DB_USER="storm"
 STORM_DEFAULT_ROOT="/storage"
 STORM_FE_BE_XMLRPC_HOST=$STORM_BACKEND_HOST
 STORM_FRONTEND_HOST_LIST=$STORM_BACKEND_HOST
 STORM_FRONTEND_PUBLIC_HOST=$STORM_BACKEND_HOST
 
-STORM_GRIDFTP_POOL_LIST=${STORM_BACKEND_HOST}
-
 SE_TYPE="disk"
 SE_LIST=$STORM_FRONTEND_PUBLIC_HOST
-
-STORM_CKSUM_SUPPORT=false
-GRIDFTP_WITH_DSI="yes"
-GRIDFTP_CONNECTIONS_MAX="2000"
-
-STORM_INFO_OVERWRITE=true
-
-STORM_GRIDHTTPS_SERVER_USER_UID=91
-STORM_GRIDHTTPS_SERVER_GROUP_UID=91
-
-STORM_ENDPOINT_QUALITY_LEVEL=2
-STORM_ENDPOINT_SERVING_STATE=4
-
-#####
-#https service
-STORM_GRIDHTTPS_SERVER_HOST=$STORM_BACKEND_HOST
-STORM_INFO_HTTP_SUPPORT=true
-STORM_INFO_HTTPS_SUPPORT=true
-STORM_GRIDHTTPS_ENABLED=true
-STORM_GRIDHTTPS_PLUGIN_CLASSNAME=it.grid.storm.https.GhttpsHTTPSPluginInterface
-STORM_GRIDHTTPS_SERVER_PORT=8088
-#####
-
-STORM_DTEAM_ONLINE_SIZE=6347657
-STORM_TESTERSEUEMIEU_ONLINE_SIZE=6347653
-STORM_TESTERSEUEMIEU_NO_VOMS_ONLINE_SIZE=6347653
-

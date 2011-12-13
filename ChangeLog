@@ -1,3 +1,15 @@
-2010-02-28 Elisabetta Ronchieri> <elisabetta.ronchieri@cnaf.infn.it>
+2011-03-31 Elisabetta Ronchieri> <elisabetta.ronchieri@cnaf.infn.it>
+
+   * Added gridftp configuration
+   * Renamed services files as follows:
+     ig-se_storm_gridftp --> storm-gridftp
+     ig-se_storm_frontend --> storm-frontend
+     ig-se_storm_checksum --> storm-checksum
+     ig-se_storm_backend --> storm-backend
+   * Added AUTHORS
+   * Added storm.def.template
+   * Improdved README
+
+2011-02-28 Elisabetta Ronchieri> <elisabetta.ronchieri@cnaf.infn.it>
 
     * added utility files

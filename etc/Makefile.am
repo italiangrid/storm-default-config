@@ -12,6 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+EXTRA_DIST = \
+   EMI_1_repos_install
+
 SUBDIRS = siteinfo
+
+sbin_SCRIPTS = EMI_1_repos_install
 
 MAINTAINERCLEANFILES = Makefile.in

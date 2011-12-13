@@ -17,6 +17,7 @@
 #
 
 EXTRA_DIST = \
+    AUTHORS \
     bootstrap \
     ChangeLog \
     README \
@@ -26,7 +27,8 @@ EXTRA_DIST = \
     project
 
 docdir = $(datadir)/doc/@PACKAGE@-@VERSION@
-doc_DATA = LICENSE \
+doc_DATA = AUTHORS \
+        LICENSE \
 	CREDITS \
 	ChangeLog \
 	README

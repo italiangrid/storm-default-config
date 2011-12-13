@@ -1,0 +1,31 @@
+#!/bin/bash
+#Create temporary installation folder
+mkdir /tmp/EMI_1_install_repo
+cd /tmp/EMI_1_install_repo
+
+#Download epel repository file installation RPM
+wget http://download.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm
+#Install epel repository file RPM
+yum -y localinstall epel-release-5-4.noarch.rpm
+
+# Download EMI 1 rc4 repository repo file into yum repos folder
+wget https://twiki.cern.ch/twiki/pub/EMI/EMI-1/rc4.repo --no-check-certificate
+cp rc4.repo /etc/yum.repos.d/
+
+#Disable the dag repo
+mv -f /etc/yum.repos.d/dag.repo /etc/yum.repos.d/dag.repo.disabled
+
+#Create the SL5  rolling repository repo file
+echo '[sl-rolling]
+name=SL 5 rolling
+baseurl=http://linuxsoft.cern.ch/scientific/5rolling/$basearch/SL/
+enabled=1
+gpgcheck=0' > /etc/yum.repos.d/sl-rolling.repo
+
+#Clean yum metadata
+yum clean all
+
+echo Done!
+
+exit 0
+

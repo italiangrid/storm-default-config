@@ -18,6 +18,8 @@
 
 %define builddir     @RPM_BUILD_DIR@/build-%{name}-%{version}
 
+%define default_user root
+
 Name:           %{name}
 Version:        %{version}
 Release:        %{release}
@@ -32,18 +34,70 @@ BuildArch:      noarch
 BuildRoot:      %{builddir}/var/tmp/%{name}-%{version}
 Summary:        Provides the utility files. 
 
+%define _sysconfdir    /etc
+%define _generalprefix storm
+
 %define debug_package %{nil}
 
 %description
 This is the installation of utilities.
 
 %prep
-%setup -n @PACKAGE@-%{version} 
+%setup -n @PACKAGE@-%{version}
 
 %build
-./bootstrap storm.common
-./configure --prefix=/usr --datadir=/usr/share --sysconfdir=/etc
+./bootstrap emi.storm.common
+./configure --prefix=/usr --sbindir=/usr/sbin --datadir=/usr/share --sysconfdir=/etc
 make
+
+
+
+%pre
+
+rm -rf /tmp/storm_permissions_mantainance
+if [ -d %{_sysconfdir}/%{_generalprefix} ] ; then
+	STORM_CONF_OWNNER_USER=`stat -c %U %{_sysconfdir}/%{_generalprefix}`
+	STORM_CONF_OWNNER_GROUP=`stat -c %G %{_sysconfdir}/%{_generalprefix}`
+	if [ ! "x${STORM_CONF_OWNNER_USER}" = "x%{default_user}" ] ; then
+		echo "preserving %{_sysconfdir}/%{_generalprefix} folder owner ownership"
+		umask 077 && mkdir -p /tmp/storm_permissions_mantainance
+		echo "export STORM_CONF_OWNNER_USER=${STORM_CONF_OWNNER_USER}" >> /tmp/storm_permissions_mantainance/export_vars
+		echo "unset STORM_CONF_OWNNER_USER" >> /tmp/storm_permissions_mantainance/unset_vars
+	fi
+	if [ ! "x${STORM_CONF_OWNNER_GROUP}" = "x%{default_user}" ] ; then
+		echo "preserving %{_sysconfdir}/%{_generalprefix} folder group ownership"
+		echo "export STORM_CONF_OWNNER_GROUP=${STORM_CONF_OWNNER_GROUP}" >> /tmp/storm_permissions_mantainance/export_vars
+		echo "unset STORM_CONF_OWNNER_GROUP" >> /tmp/storm_permissions_mantainance/unset_vars
+	fi
+fi
+
+%post
+
+if [ -d %{_sysconfdir}/%{_generalprefix} ] ; then
+	if [ -d /tmp/storm_permissions_mantainance ] ; then
+		echo "restoring %{_sysconfdir}/%{_generalprefix} and %{_varlog}/%{_generalprefix} folder ownership"
+		if [ -f /tmp/storm_permissions_mantainance/export_vars -a -f /tmp/storm_permissions_mantainance/unset_vars ] ; then
+			source /tmp/storm_permissions_mantainance/export_vars
+			DONE="false"
+			if [ ! -z ${STORM_CONF_OWNNER_USER} ] ; then
+				echo "Setting %{_sysconfdir}/%{_generalprefix} user ownership to ${STORM_CONF_OWNNER_USER}"
+	  			chown ${STORM_CONF_OWNNER_USER} %{_sysconfdir}/%{_generalprefix}
+	  			DONE="true"
+	  		fi
+			if [ ! -z ${STORM_CONF_OWNNER_GROUP} ] ; then
+	  			echo "Setting %{_sysconfdir}/%{_generalprefix} group ownership to ${STORM_CONF_OWNNER_GROUP}"
+	  			chgrp ${STORM_CONF_OWNNER_GROUP} %{_sysconfdir}/%{_generalprefix}
+	  			DONE="true"
+	  		fi
+		  	source /tmp/storm_permissions_mantainance/unset_vars
+		  	DONE=""
+		else
+	  		echo "Error. No env variable files available in /tmp/storm_permissions_mantainance"
+  			exit 1
+		fi
+		rm -rf /tmp/storm_permissions_mantainance
+	fi
+fi
 
 %install
 if [ -d $RPM_BUILD_ROOT ]; then rm -rf $RPM_BUILD_ROOT; fi
@@ -54,28 +108,44 @@ make install DESTDIR=$RPM_BUILD_ROOT
 rm -rf $RPM_BUILD_ROOT
 
 %files 
-%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/storm.def
-%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/storm-users.conf
-%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/storm-groups.conf
-%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/storm-wn-list.conf
-%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/services/ig-se_storm_backend
-%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/services/ig-se_storm_frontend
-%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/services/ig-se_storm_checksum
-%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/vo.d/dteam
-%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/vo.d/infngrid
-%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/vo.d/ops
-%attr(755,root,root) %{_sysconfdir}/storm/siteinfo/vo.d/testers.eu-emi.eu
+%defattr(-,%{default_user},%{default_user},-)
+
+%{_sbindir}/EMI_1_repos_install
+%attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/storm.def
+%attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/storm.def.template
+%attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/storm-users.conf
+%attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/storm-groups.conf
+%attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/storm-wn-list.conf
+%attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/services/se_storm_backend
+%attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/services/se_storm_frontend
+%attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/services/se_storm_checksum
+%attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/services/se_storm_gridftp
+%attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/vo.d/dteam
+%attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/vo.d/infngrid
+%attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/vo.d/ops
+%attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/vo.d/testers.eu-emi.eu
+%doc %{_datadir}/doc/%{name}-%{version}/AUTHORS
 %doc %{_datadir}/doc/%{name}-%{version}/ChangeLog
 %doc %{_datadir}/doc/%{name}-%{version}/CREDITS
 %doc %{_datadir}/doc/%{name}-%{version}/LICENSE
 %doc %{_datadir}/doc/%{name}-%{version}/README
 
 %dir %{_datadir}/doc/%{name}-%{version}
-%dir %{_sysconfdir}/storm
-%dir %{_sysconfdir}/storm/siteinfo
-%dir %{_sysconfdir}/storm/siteinfo/services
-%dir %{_sysconfdir}/storm/siteinfo/vo.d
+%dir %{_sysconfdir}/%{_generalprefix}
+%dir %{_sysconfdir}/%{_generalprefix}/siteinfo
+%dir %{_sysconfdir}/%{_generalprefix}/siteinfo/services
+%dir %{_sysconfdir}/%{_generalprefix}/siteinfo/vo.d
 
 %changelog
-* Fri Feb 28 2011 Elisabetta Ronchieri> <elisabetta.ronchieri@cnaf.infn.it>
+
+* Fri Apr 29 2011 Michele Dibenedetto <michele.dibenedetto@cnaf.infn.it>
+- Addde pre and post tags to avoid overwriting %{_sysconfdir}/%{_generalprefix} ownership during rpm installation
+
+* Thu Mar 31 2011 Elisabetta Ronchieri <elisabetta.ronchieri@cnaf.infn.it>
+- Added gridftp configuration
+- Added AUTHORS
+- Added storm.def.template
+- Improved README
+
+* Fri Feb 28 2011 Elisabetta Ronchieri <elisabetta.ronchieri@cnaf.infn.it>
 - Added utility

@@ -13,8 +13,9 @@
 # limitations under the License.
 
 stormetcsysconfdir = $(sysconfdir)/storm/siteinfo/services
-dist_stormetcsysconf_DATA = ig-se_storm_backend \
-   ig-se_storm_checksum \
-   ig-se_storm_frontend
+dist_stormetcsysconf_DATA = se_storm_backend \
+   se_storm_checksum \
+   se_storm_gridftp \
+   se_storm_frontend
 
 MAINTAINERCLEANFILES = Makefile.in

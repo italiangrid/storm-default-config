@@ -8,10 +8,10 @@
 # More information here: http://igrelease.forge.cnaf.infn.it/doku.php?id=doc:guides:site-info-variables
 # (look at "SE StoRM Backend" section)
 
-# StoRM backend host
-STORM_BACKEND_HOST=omii005-vm01.$MY_DOMAIN
 # StoRM storage path
-STORM_DEFAULT_ROOT=/storage
+#STORM_DEFAULT_ROOT=/storage
+
+GRIDFTP_WITH_DSI="yes"
 
 # General settings
 #---------------------------------------------------------
@@ -22,8 +22,8 @@ STORM_DEFAULT_ROOT=/storage
 # OPTIONAL - Default value: /etc/grid-security/${STORM_USER}
 #STORM_CERT_DIR=/etc/grid-security/${STORM_USER}
 # Directory used to exchange proxies.
-# OPTIONAL - Default value: ${STORM_BE_DIR}/tmp
-#STORM_PROXY_HOME=${STORM_BE_DIR}/tmp
+# OPTIONAL - Default value: /etc/storm/tmp
+#STORM_PROXY_HOME=/etc/storm/tmp
 # StoRM Frontend service public host.
 # OPTIONAL - Default value: ${STORM_BACKEND_HOST}
 STORM_FRONTEND_PUBLIC_HOST=${STORM_BACKEND_HOST}
@@ -51,7 +51,7 @@ STORM_FRONTEND_HOST_LIST=${STORM_FRONTEND_PUBLIC_HOST}
 #STORM_DB_USER=storm
 # Password for database connection.
 # COMPULSORY - No default value.
-STORM_DB_PWD=quousquetandem
+#STORM_DB_PWD=storm
 
 # Configuration files settings
 #---------------------------------------------------------
@@ -82,7 +82,7 @@ STORM_INFO_OVERWRITE=true
 #---------------------------------------------------------
 # Enable the support to checksum agents.
 # OPTIONAL - Default value: false
-#STORM_CKSUM_SUPPORT=false
+STORM_CKSUM_SUPPORT=false
 # Algorithm used by checksum agents.
 # OPTIONAL - Available values: [Adler32|CRC32|MD2|MD5|SHA-1|SHA-256|SHA-384|SHA-512] - Default value: Adler32
 #STORM_CKSUM_ALGORITHM="Adler32"
@@ -90,14 +90,14 @@ STORM_INFO_OVERWRITE=true
 # ATTENTION: this variable define a list of three values comma-separated: hostname,status_port,service_port e.g.:
 # STORM_CKSUM_SERVICE_LIST="host1,status_port1,service_port1 host2,status_port2,service_port2"
 # OPTIONAL - Default value: ${STORM_BACKEND_HOST},9995,9996
-#STORM_CKSUM_SERVICE_LIST=${STORM_BACKEND_HOST},9995,9996
+STORM_CKSUM_SERVICE_LIST=${STORM_BACKEND_HOST},9995,9996
 
 # Storage Areas settings
 #---------------------------------------------------------
 # List of supported Storage Areas.
 # Usually at least one Storage Area for each VO specified in VOS should be created. (e.g. STORM_STORAGEAREA_LIST="SA1 SA2 SA3").
 # OPTIONAL - Default value: ${VOS}
-STORM_STORAGEAREA_LIST=${VOS}
+#STORM_STORAGEAREA_LIST=${VOS}
 
 # Default Storage Areas settings
 #---------------------------------------------------------
