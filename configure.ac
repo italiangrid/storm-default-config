@@ -17,7 +17,7 @@
 #
 
 AC_PREREQ([2.59])
-AC_INIT([storm utility], [1.0.0])
+AC_INIT([storm pre assembled configuration], [1.0.0])
 AC_CONFIG_AUX_DIR([./project])
 AM_INIT_AUTOMAKE([1.6.3 subdir-objects])
 AC_CONFIG_SRCDIR([etc/siteinfo/storm.def.template.in])
@@ -25,7 +25,7 @@ AC_CONFIG_SRCDIR([etc/siteinfo/storm.def.template.in])
 # Release number
 osdist=`cat /etc/redhat-release | awk 'BEGIN {FS="release "} {print $2}'| awk 'BEGIN {FS="."} {print $1}'`
 AC_SUBST([STORM_UTILITY_SO], [sl$osdist])
-AC_SUBST([STORM_UTILITY_AGE_NUMBER], [6])
+AC_SUBST([STORM_UTILITY_AGE_NUMBER], [1])
 
 # Notices.
 AC_COPYRIGHT([See LICENCE file for details])
