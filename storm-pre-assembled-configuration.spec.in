@@ -23,12 +23,12 @@
 Name:           %{name}
 Version:        %{version}
 Release:        %{release}
-Vendor:         INFN - CNAF (2009)
+Vendor:         EMI
 Packager:       Elisabetta Ronchieri <elisabetta.ronchieri@cnaf.infn.it>
-License:        Apache License, Version 2.0.
+License:        Apache License
 URL:            http://grid-it.cnaf.infn.it
 Source:         @PACKAGE@-%{version}.tar.gz
-Group:          Application/Generic
+Group:          System Environment/Shells
 AutoReqProv:    yes
 BuildArch:      noarch
 BuildRoot:      %{builddir}/var/tmp/%{name}-%{version}
