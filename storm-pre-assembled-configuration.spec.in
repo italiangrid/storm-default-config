@@ -50,53 +50,49 @@ This contains information to configure StoRM nodes.
 ./configure --prefix=/usr --sbindir=/usr/sbin --datadir=/usr/share --sysconfdir=/etc
 make
 
-
-
 %pre
-
 rm -rf /tmp/storm_permissions_mantainance
 if [ -d %{_sysconfdir}/%{_generalprefix} ] ; then
-	STORM_CONF_OWNNER_USER=`stat -c %U %{_sysconfdir}/%{_generalprefix}`
-	STORM_CONF_OWNNER_GROUP=`stat -c %G %{_sysconfdir}/%{_generalprefix}`
-	if [ ! "x${STORM_CONF_OWNNER_USER}" = "x%{default_user}" ] ; then
-		echo "preserving %{_sysconfdir}/%{_generalprefix} folder owner ownership"
-		umask 077 && mkdir -p /tmp/storm_permissions_mantainance
-		echo "export STORM_CONF_OWNNER_USER=${STORM_CONF_OWNNER_USER}" >> /tmp/storm_permissions_mantainance/export_vars
-		echo "unset STORM_CONF_OWNNER_USER" >> /tmp/storm_permissions_mantainance/unset_vars
-	fi
-	if [ ! "x${STORM_CONF_OWNNER_GROUP}" = "x%{default_user}" ] ; then
-		echo "preserving %{_sysconfdir}/%{_generalprefix} folder group ownership"
-		echo "export STORM_CONF_OWNNER_GROUP=${STORM_CONF_OWNNER_GROUP}" >> /tmp/storm_permissions_mantainance/export_vars
-		echo "unset STORM_CONF_OWNNER_GROUP" >> /tmp/storm_permissions_mantainance/unset_vars
-	fi
+    STORM_CONF_OWNNER_USER=`stat -c %U %{_sysconfdir}/%{_generalprefix}`
+    STORM_CONF_OWNNER_GROUP=`stat -c %G %{_sysconfdir}/%{_generalprefix}`
+    if [ ! "x${STORM_CONF_OWNNER_USER}" = "x%{default_user}" ] ; then
+        echo "preserving %{_sysconfdir}/%{_generalprefix} folder owner ownership"
+        umask 077 && mkdir -p /tmp/storm_permissions_mantainance
+        echo "export STORM_CONF_OWNNER_USER=${STORM_CONF_OWNNER_USER}" >> /tmp/storm_permissions_mantainance/export_vars
+        echo "unset STORM_CONF_OWNNER_USER" >> /tmp/storm_permissions_mantainance/unset_vars
+    fi
+    if [ ! "x${STORM_CONF_OWNNER_GROUP}" = "x%{default_user}" ] ; then
+        echo "preserving %{_sysconfdir}/%{_generalprefix} folder group ownership"
+        echo "export STORM_CONF_OWNNER_GROUP=${STORM_CONF_OWNNER_GROUP}" >> /tmp/storm_permissions_mantainance/export_vars
+        echo "unset STORM_CONF_OWNNER_GROUP" >> /tmp/storm_permissions_mantainance/unset_vars
+    fi
 fi
 
 %post
-
 if [ -d %{_sysconfdir}/%{_generalprefix} ] ; then
-	if [ -d /tmp/storm_permissions_mantainance ] ; then
-		echo "restoring %{_sysconfdir}/%{_generalprefix} and %{_varlog}/%{_generalprefix} folder ownership"
-		if [ -f /tmp/storm_permissions_mantainance/export_vars -a -f /tmp/storm_permissions_mantainance/unset_vars ] ; then
-			source /tmp/storm_permissions_mantainance/export_vars
-			DONE="false"
-			if [ ! -z ${STORM_CONF_OWNNER_USER} ] ; then
-				echo "Setting %{_sysconfdir}/%{_generalprefix} user ownership to ${STORM_CONF_OWNNER_USER}"
-	  			chown ${STORM_CONF_OWNNER_USER} %{_sysconfdir}/%{_generalprefix}
-	  			DONE="true"
-	  		fi
-			if [ ! -z ${STORM_CONF_OWNNER_GROUP} ] ; then
-	  			echo "Setting %{_sysconfdir}/%{_generalprefix} group ownership to ${STORM_CONF_OWNNER_GROUP}"
-	  			chgrp ${STORM_CONF_OWNNER_GROUP} %{_sysconfdir}/%{_generalprefix}
-	  			DONE="true"
-	  		fi
-		  	source /tmp/storm_permissions_mantainance/unset_vars
-		  	DONE=""
-		else
-	  		echo "Error. No env variable files available in /tmp/storm_permissions_mantainance"
-  			exit 1
-		fi
-		rm -rf /tmp/storm_permissions_mantainance
-	fi
+    if [ -d /tmp/storm_permissions_mantainance ] ; then
+        echo "restoring %{_sysconfdir}/%{_generalprefix} and %{_varlog}/%{_generalprefix} folder ownership"
+        if [ -f /tmp/storm_permissions_mantainance/export_vars -a -f /tmp/storm_permissions_mantainance/unset_vars ] ; then
+            source /tmp/storm_permissions_mantainance/export_vars
+            DONE="false"
+                if [ ! -z ${STORM_CONF_OWNNER_USER} ] ; then
+                    echo "Setting %{_sysconfdir}/%{_generalprefix} user ownership to ${STORM_CONF_OWNNER_USER}"
+                    chown ${STORM_CONF_OWNNER_USER} %{_sysconfdir}/%{_generalprefix}
+                    DONE="true"
+                fi
+                if [ ! -z ${STORM_CONF_OWNNER_GROUP} ] ; then
+                    echo "Setting %{_sysconfdir}/%{_generalprefix} group ownership to ${STORM_CONF_OWNNER_GROUP}"
+                    chgrp ${STORM_CONF_OWNNER_GROUP} %{_sysconfdir}/%{_generalprefix}
+                    DONE="true"
+                fi
+            source /tmp/storm_permissions_mantainance/unset_vars
+            DONE=""
+        else
+            echo "Error. No env variable files available in /tmp/storm_permissions_mantainance"
+            exit 1
+        fi
+        rm -rf /tmp/storm_permissions_mantainance
+    fi
 fi
 
 %install
