@@ -81,7 +81,7 @@ AC_CONFIG_FILES([etc/Makefile])
 AC_CONFIG_FILES([etc/siteinfo/Makefile])
 AC_CONFIG_FILES([etc/siteinfo/storm.def.template])
 AC_CONFIG_FILES([etc/siteinfo/vo.d/Makefile])
-AC_CONFIG_FILES([storm-utility.spec])
+AC_CONFIG_FILES([storm-pre-assembled-configuration.spec])
 
 AC_OUTPUT
 

@@ -23,7 +23,7 @@ EXTRA_DIST = \
     README \
     LICENSE \
     CREDITS \
-    storm-utility.spec.in \
+    storm-pre-assembled-configuration.spec.in \
     project
 
 docdir = $(datadir)/doc/@PACKAGE@-@VERSION@
@@ -39,7 +39,7 @@ SUBDIRS = etc
 ## Default flags to run aclocal
 ACLOCAL_AMFLAGS = -I project -I config
 
-SPEC_FILE = storm-utility.spec
+SPEC_FILE = storm-pre-assembled-configuration.spec
 
 RPM_MAIN_DIR = @RPM_DIR@/rpm
 RPM_TMP_DIR = $(RPM_MAIN_DIR)/tmp
