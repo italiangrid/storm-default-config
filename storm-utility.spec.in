@@ -40,7 +40,7 @@ Summary:        Provides the utility files.
 %define debug_package %{nil}
 
 %description
-This is the installation of utilities.
+This contains information to configure StoRM nodes.
 
 %prep
 %setup -n @PACKAGE@-%{version}
@@ -133,5 +133,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 
-* Thu Dec 15 2011 Elisabetta Ronchieri <elisabetta.ronchieri@cnaf.infn.it> 
+* Thu Dec 15 2011 Elisabetta Ronchieri <elisabetta.ronchieri@cnaf.infn.it> - 1.0.0-1.sl5
+- pre assembled configuartion contains information to configure storm nodes
 
