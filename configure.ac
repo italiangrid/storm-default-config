@@ -37,18 +37,7 @@ AC_SUBST(WORKDIR)
 
 DEFAULT_RPM_DIR=`pwd`
 
-AC_PROG_CC
-AC_PROG_CXX
-AC_PROG_LN_S
-AC_PROG_MAKE_SET
-AC_PROG_LIBTOOL
-AM_PROG_CC_C_O
 AC_PROG_INSTALL
-
-AC_C_CONST
-AC_TYPE_SIZE_T
-
-AC_STORM
 
 # ========================================================================
 # RPM directory
