@@ -116,10 +116,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/storm-users.conf
 %attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/storm-groups.conf
 %attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/storm-wn-list.conf
-%attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/services/se_storm_backend
-%attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/services/se_storm_frontend
-%attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/services/se_storm_checksum
-%attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/services/se_storm_gridftp
 %attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/vo.d/dteam
 %attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/vo.d/infngrid
 %attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/vo.d/ops
@@ -133,19 +129,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/doc/%{name}-%{version}
 %dir %{_sysconfdir}/%{_generalprefix}
 %dir %{_sysconfdir}/%{_generalprefix}/siteinfo
-%dir %{_sysconfdir}/%{_generalprefix}/siteinfo/services
 %dir %{_sysconfdir}/%{_generalprefix}/siteinfo/vo.d
 
 %changelog
 
-* Fri Apr 29 2011 Michele Dibenedetto <michele.dibenedetto@cnaf.infn.it>
-- Addde pre and post tags to avoid overwriting %{_sysconfdir}/%{_generalprefix} ownership during rpm installation
+* Thu Dec 15 2011 Elisabetta Ronchieri <elisabetta.ronchieri@cnaf.infn.it> 
 
-* Thu Mar 31 2011 Elisabetta Ronchieri <elisabetta.ronchieri@cnaf.infn.it>
-- Added gridftp configuration
-- Added AUTHORS
-- Added storm.def.template
-- Improved README
-
-* Fri Feb 28 2011 Elisabetta Ronchieri <elisabetta.ronchieri@cnaf.infn.it>
-- Added utility

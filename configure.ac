@@ -80,7 +80,6 @@ AC_CONFIG_FILES([Makefile])
 AC_CONFIG_FILES([etc/Makefile])
 AC_CONFIG_FILES([etc/siteinfo/Makefile])
 AC_CONFIG_FILES([etc/siteinfo/storm.def.template])
-AC_CONFIG_FILES([etc/siteinfo/services/Makefile])
 AC_CONFIG_FILES([etc/siteinfo/vo.d/Makefile])
 AC_CONFIG_FILES([storm-utility.spec])
 

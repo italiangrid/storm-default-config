@@ -15,7 +15,7 @@
 EXTRA_DIST = \
    storm.def.template.in
 
-SUBDIRS = services vo.d
+SUBDIRS = vo.d
 
 stormetcsysconfdir = $(sysconfdir)/storm/siteinfo
 dist_stormetcsysconf_DATA = storm-groups.conf \
