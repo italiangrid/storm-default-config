@@ -80,7 +80,7 @@ stage:
 
 distsrc:
 	mkdir -p @DISTSOURCE@
-	cp $(distdir).tar.gz $(DISTSOURCE)/$(distdir).tar.gz
+	cp $(distdir).tar.gz $(DISTSOURCE)/$(distdir)-@STORM_UTILITY_AGE_NUMBER@.@STORM_UTILITY_SO@.src.tar.gz
 	cp $(RPM_SRPM)/*.rpm @DISTSOURCE@
 
 distbin:
@@ -105,7 +105,7 @@ distbin:
           $(MAKE) $(AM_MAKEFLAGS) "$$target-am" $$prefix_arg || exit 1; \
         fi; test -z "$$fail"; \
         pushd $$tmpdistbin; \
-        $(AMTAR) -zcf $(DISTBIN)/$(distdir).tar.gz .; \
+        $(AMTAR) -zcf $(DISTBIN)/$(distdir)-@STORM_UTILITY_AGE_NUMBER@.@STORM_UTILITY_SO@.tar.gz .; \
         popd; \
 	rm -rf $$tmpdistbin
 	cp $(RPM_RPM)/*/*.rpm @DISTBIN@
