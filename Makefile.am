@@ -55,7 +55,7 @@ rpm: dist
 	/bin/cp -u @PACKAGE@-@VERSION@.tar.gz $(RPM_SOURCE)
 	/bin/cp $(SPEC_FILE) $(RPM_SPEC)
 	cd $(RPM_SPEC); \
-        /usr/bin/rpmbuild  --define "_topdir $(RPM_MAIN_DIR)" -ba $(RPM_SPEC)/$(SPEC_FILE)
+        /usr/bin/rpmbuild  --define "_topdir $(RPM_MAIN_DIR)" --nodeps -ba $(RPM_SPEC)/$(SPEC_FILE)
 	mkdir -p @DISTSOURCE@ @DISTBIN@
 
 stage:
