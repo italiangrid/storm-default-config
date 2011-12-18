@@ -37,6 +37,8 @@ Summary:        Provides the utility files.
 %define _sysconfdir    /etc
 %define _generalprefix storm
 
+BuildRequires: storm-common
+
 %define debug_package %{nil}
 
 %description
