@@ -41,7 +41,7 @@ ACLOCAL_AMFLAGS = -I project -I config
 
 SPEC_FILE = storm-pre-assembled-configuration.spec
 
-RPM_MAIN_DIR = @RPM_DIR@/rpm
+RPM_MAIN_DIR = $(PWD)/rpm
 RPM_TMP_DIR = $(RPM_MAIN_DIR)/tmp
 RPM_SOURCE = $(RPM_MAIN_DIR)/SOURCES
 RPM_SPEC = $(RPM_MAIN_DIR)/SPECS
@@ -56,7 +56,7 @@ rpm: dist
 	/bin/cp $(SPEC_FILE) $(RPM_SPEC)
 	cd $(RPM_SPEC); \
         /usr/bin/rpmbuild  --define "_topdir $(RPM_MAIN_DIR)" --nodeps -ba $(RPM_SPEC)/$(SPEC_FILE)
-	mkdir -p @DISTSOURCE@ @DISTBIN@
+	mkdir -p @DISTSOURCE@ @DISTBIN@ $(WORKDIR)/dist_bin
 
 stage:
 	@set fnord $(MAKEFLAGS); amf=$$2; \
