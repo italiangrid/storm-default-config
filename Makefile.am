@@ -24,22 +24,29 @@ EXTRA_DIST = \
     LICENSE \
     CREDITS \
     storm-pre-assembled-configuration.spec.in \
-    project
+    project \
+    m4
 
 docdir = $(datadir)/doc/@PACKAGE@-@VERSION@
 doc_DATA = AUTHORS \
-        LICENSE \
-	CREDITS \
-	ChangeLog \
-	README
+    LICENSE \
+    CREDITS \
+    ChangeLog \
+    README
 
 ## Subdirectories list
 SUBDIRS = etc
 
 ## Default flags to run aclocal
-ACLOCAL_AMFLAGS = -I project -I config
+ACLOCAL_AMFLAGS = -I m4
 
-SPEC_FILE = storm-pre-assembled-configuration.spec
+CLEANFILES = \
+    storm-pre-assembled-configuration.spec
+
+MAINTAINERCLEANFILES = Makefile.in
+
+SPEC_FILE = \
+    storm-pre-assembled-configuration.spec
 
 RPM_MAIN_DIR = $(PWD)/rpm
 RPM_TMP_DIR = $(RPM_MAIN_DIR)/tmp
@@ -89,7 +96,7 @@ distbin: stage
 	cp $(RPM_RPM)/*/*.rpm @DISTBIN@
 
 clean-local:
-	rm -f @PACKAGE@-@VERSION@.tar.gz
+	rm -f @PACKAGE@-@VERSION@.*.tar.gz 
 
 distclean-local:
-	rm -rf $(RPM_DIRS) project
+	rm -rf $(RPM_DIRS) project 

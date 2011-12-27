@@ -38,6 +38,9 @@ Summary:        Provides the utility files.
 %define _generalprefix storm
 
 BuildRequires: storm-common
+BuildRequires: libtoolize
+BuildRequires: automake
+BuildRequires: autoconf
 
 %define debug_package %{nil}
 

@@ -19,8 +19,9 @@
 AC_PREREQ([2.59])
 AC_INIT([storm pre assembled configuration], [1.0.0])
 AC_CONFIG_AUX_DIR([./project])
-AM_INIT_AUTOMAKE([1.6.3 subdir-objects])
 AC_CONFIG_SRCDIR([etc/siteinfo/storm.def.template.in])
+M_INIT_AUTOMAKE
+AC_CONFIG_MACRO_DIR([m4])
 
 # Release number
 osdist=`cat /etc/redhat-release | awk 'BEGIN {FS="release "} {print $2}'| awk 'BEGIN {FS="."} {print $1}'`
@@ -44,10 +45,10 @@ AC_PROG_MAKE_SET
 AM_PROG_CC_C_O
 AC_PROG_INSTALL
 
-AC_STORM
+AC_STORM([])
 
 # Installation prefix
-AC_PREFIX_DEFAULT([/etc])
+#AC_PREFIX_DEFAULT([/etc])
 
 # Configuration items
 AM_CONFIG_HEADER([etc/autogen/config.h])
