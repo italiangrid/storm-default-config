@@ -84,7 +84,10 @@ distsrc:
 	cp $(RPM_SRPM)/*.rpm @DISTSOURCE@
 
 distbin: stage
-	$(AMTAR) -zcf $(DISTBIN)/$(distdir)-@STORM_UTILITY_AGE_NUMBER@.@STORM_UTILITY_SO@.noarch.tar.gz etics-tmp
+	cd @prefix@/..
+	tar -zcf $(distdir)-@STORM_UTILITY_AGE_NUMBER@.@STORM_UTILITY_SO@.noarch.tar.gz .
+	cp $(distdir)-@STORM_UTILITY_AGE_NUMBER@.@STORM_UTILITY_SO@.noarch.tar.gz @DISTBIN@
+	cd ..
 	cp $(RPM_RPM)/*/*.rpm @DISTBIN@
 
 clean-local:
