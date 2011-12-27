@@ -37,28 +37,15 @@ AC_SUBST(WORKDIR)
 
 DEFAULT_RPM_DIR=`pwd`
 
+AC_PROG_CC
+AC_PROG_CXX
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+AC_PROG_LIBTOOL
+AM_PROG_CC_C_O
 AC_PROG_INSTALL
 
 AC_STORM
-
-# ========================================================================
-# RPM directory
-# ========================================================================
-AC_MSG_CHECKING([for RPM directory])
-if test -z $RPMD; then
-    RPMD=$DEFAULT_RPM_DIR
-    RPMBD=$DEFAULT_RPM_DIR/rpm/tmp
-fi
-if test ! \( -d $RPMD \); then
-    AC_MSG_RESULT([no such directory "$RPMD"])
-fi
-if test ! \( -d $RPMBD \); then
-    AC_MSG_RESULT([no such directory "$RPMBD"])
-fi
-AC_MSG_RESULT(["$RMPD" found])
-AC_MSG_RESULT(["$RMPBD" found])
-AC_SUBST([RPM_DIR], [$RPMD])
-AC_SUBST([RPM_BUILD_DIR], [$RPMBD])
 
 # Installation prefix
 AC_PREFIX_DEFAULT([/etc])

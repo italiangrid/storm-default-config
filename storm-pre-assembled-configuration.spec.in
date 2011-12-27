@@ -31,7 +31,7 @@ Source:         @PACKAGE@-%{version}.tar.gz
 Group:          System Environment/Shells
 AutoReqProv:    yes
 BuildArch:      noarch
-BuildRoot:      %{builddir}/var/tmp/%{name}-%{version}
+BuildRoot:      %{_builddir}/var/tmp/%{name}-%{version}
 Summary:        Provides the utility files. 
 
 %define _sysconfdir    /etc
