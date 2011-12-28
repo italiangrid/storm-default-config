@@ -37,7 +37,6 @@ Summary:        Provides the utility files.
 %define _sysconfdir    /etc
 %define _generalprefix storm
 
-BuildRequires: storm-common
 BuildRequires: libtoolize
 BuildRequires: automake
 BuildRequires: autoconf
@@ -51,7 +50,7 @@ This contains information to configure StoRM nodes.
 %setup -n @PACKAGE@-%{version}
 
 %build
-./bootstrap emi.storm.common
+./bootstrap
 ./configure --prefix=/usr --sbindir=/usr/sbin --datadir=/usr/share --sysconfdir=/etc
 make
 
