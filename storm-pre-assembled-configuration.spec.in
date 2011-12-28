@@ -37,7 +37,7 @@ Summary:        Provides the utility files.
 %define _sysconfdir    /etc
 %define _generalprefix storm
 
-BuildRequires: libtoolize
+BuildRequires: libtool
 BuildRequires: automake
 BuildRequires: autoconf
 
