@@ -17,7 +17,7 @@
 mkdir -p etc/autogen project rpm/tmp
 set -x
 
-aclocal -I project
+aclocal -I m4
 
 libtoolize --force
 autoheader
