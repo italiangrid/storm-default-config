@@ -32,7 +32,7 @@ ENABLE_MPI=no
 ################################
 
 MY_DOMAIN="cnaf.infn.it"
-SITE_NAME="storm-1.7-all-in-one"
+SITE_NAME="storm-1.9-all-in-one"
 SITE_LAT=0.0
 SITE_LONG=0.0
 NTP_HOSTS_IP="131.154.1.103 193.206.144.10"
@@ -49,7 +49,7 @@ JAVA_LOCATION="/usr/java/latest"
 VOS="testers.eu-emi.eu dteam"
 STORM_STORAGEAREA_LIST="$VOS testers.eu-emi.eu_no_voms testers.eu-emi.eu_https"
 
-STORM_BACKEND_HOST=omii006-vm02.cnaf.infn.it
+STORM_BACKEND_HOST=emitestbed04.cnaf.infn.it
 STORM_BDII_OVERWRITE="true"
 STORM_DB_HOST=$STORM_BACKEND_HOST
 STORM_USER="storm"
