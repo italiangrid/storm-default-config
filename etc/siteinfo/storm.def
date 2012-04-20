@@ -27,6 +27,8 @@ GROUPS_CONF=/etc/storm/siteinfo/storm-groups.conf
 ENABLE_MPI=no
 # SPECIAL_POOL_ACCOUNTS=yes or no
 
+JAVA_LOCATION="/usr/java/latest"
+
 ################################
 # Site configuration variables #
 ################################
@@ -88,5 +90,7 @@ STORM_GRIDHTTPS_SERVER_PORT=8088
 STORM_DTEAM_ONLINE_SIZE=6347657
 STORM_TESTERSEUEMIEU_ONLINE_SIZE=6347653
 STORM_TESTERSEUEMIEU_NO_VOMS_ONLINE_SIZE=6347653
+STORM_TESTERSEUEMIEU_NO_VOMS_VONAME=testers.eu-emi.eu
 STORM_TESTERSEUEMIEU_HTTPS_ONLINE_SIZE=6347653
 STORM_TESTERSEUEMIEU_HTTPS_ROOT=/storage/testers.eu-emi.eu_https/https
+STORM_TESTERSEUEMIEU_HTTPS_VONAME=testers.eu-emi.eu
