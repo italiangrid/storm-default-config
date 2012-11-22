@@ -66,7 +66,6 @@ srpm: dist
 rpm: srpm
 	/usr/bin/rpmbuild  --rebuild --define "_topdir $(RPM_MAIN_DIR)" --define "dist .@STORM_UTILITY_SO@"  $(RPM_SRPM)/@PACKAGE@-@VERSION@-@STORM_UTILITY_AGE_NUMBER@.src.rpm
 
-
 packaging: dist
 	/bin/mkdir -p $(RPM_DIRS)
 	/bin/cp -u @PACKAGE@-@VERSION@.tar.gz $(RPM_SOURCE)
