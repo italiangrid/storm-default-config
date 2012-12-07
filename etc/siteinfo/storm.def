@@ -49,7 +49,7 @@ MYSQL_PASSWORD="storm"
 VOS="testers.eu-emi.eu dteam"
 STORM_STORAGEAREA_LIST="$VOS testers.eu-emi.eu_no_voms testers.eu-emi.eu_https nosubstring"
 
-STORM_BACKEND_HOST=emitestbed04.cnaf.infn.it
+STORM_BACKEND_HOST=
 STORM_BDII_OVERWRITE="true"
 STORM_DB_HOST=$STORM_BACKEND_HOST
 STORM_USER="storm"
