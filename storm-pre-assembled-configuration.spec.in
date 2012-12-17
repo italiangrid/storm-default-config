@@ -111,7 +111,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,%{default_user},%{default_user},-)
 
 %{_sbindir}/EMI_1_repos_install
-%attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/storm.def
+%conf %attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/storm.def
 %attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/storm.def.template
 %attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/storm-users.conf
 %attr(750,%{default_user},%{default_user}) %{_sysconfdir}/%{_generalprefix}/siteinfo/storm-groups.conf
