@@ -47,7 +47,7 @@ NTP_HOSTS_IP="131.154.1.103 193.206.144.10"
 MYSQL_PASSWORD="storm"
 
 VOS="testers.eu-emi.eu dteam"
-STORM_STORAGEAREA_LIST="$VOS testers.eu-emi.eu_no_voms testers.eu-emi.eu_https nosubstring free cnaf http_readable"
+STORM_STORAGEAREA_LIST="$VOS testers.eu-emi.eu_no_voms testers.eu-emi.eu_https nosubstring free cnaf http_readable fake_setting"
 
 STORM_BACKEND_HOST=
 STORM_BDII_OVERWRITE="true"
@@ -104,4 +104,8 @@ STORM_CNAF_DN_L_REGEX="CNAF"
 STORM_CNAF_VONAME="*"
 STORM_HTTP_READABLE_ONLINE_SIZE=2
 STORM_HTTP_READABLE_VONAME=testers.eu-emi.eu
-STORM_HTTP_READABLE_ANONYMOUS_HTTP_READ=true 
+STORM_HTTP_READABLE_ANONYMOUS_HTTP_READ=true
+STORM_FAKE_SETTING_ONLINE_SIZE=2
+STORM_FAKE_SETTING_VONAME=testers.eu-emi.eu
+STORM_FAKE_SETTING_GRIDFTP_POOL_LIST="joda1.cnaf.infn.it 11, joda2.cnaf.infn.it 12"
+STORM_FAKE_SETTING_GRIDFTP_POOL_STRATEGY=weight
